@@ -22,19 +22,22 @@
             text-align: center;
         }
 
-        /* Container da Mensagem */
+        /* Container da Mensagem com transparência ajustada */
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            /* O último número (0.75) controla a transparência. 
+               Quanto menor o número, mais transparente fica. */
+            background: rgba(255, 255, 255, 0.75); 
             padding: 30px;
             border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             z-index: 10;
             max-width: 450px;
             width: 90%;
             max-height: 85vh;
-            overflow-y: auto; /* Permite rolar se o texto for grande no celular */
+            overflow-y: auto;
             display: none; 
             animation: fadeIn 1s ease-in-out;
+            backdrop-filter: blur(5px); /* Efeito de vidro fosco para ficar elegante */
         }
 
         @keyframes fadeIn {
@@ -42,7 +45,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Botão solto sobre o GIF (sem borda branca ao redor) */
         #inicio {
             z-index: 20;
         }
@@ -60,15 +62,11 @@
             font-weight: bold;
         }
 
-        #btn-mensagem:hover { 
-            transform: scale(1.1);
-            background-color: #ff3355;
-        }
-
         h1 {
             color: #d63384;
             font-size: 1.8rem;
             margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .foto-mae {
@@ -77,19 +75,19 @@
             border-radius: 15px;
             border: 4px solid #fff;
             margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Estilo da sua mensagem */
         .texto-personalizado {
             font-size: 1.05rem;
-            color: #333;
+            color: #222; /* Texto um pouco mais escuro para ler melhor no fundo transparente */
             line-height: 1.6;
             text-align: left;
             white-space: pre-wrap;
             padding: 0 10px;
+            font-weight: 500;
         }
 
-        /* Chuva de Corações */
         .coracao {
             position: absolute;
             top: -10%;
@@ -141,7 +139,6 @@
             const musica = document.getElementById('musica-fundo');
             musica.play().catch(e => {
                 console.log("Áudio aguardando interação.");
-                // Caso o navegador bloqueie, tenta novamente
                 musica.play();
             });
 
