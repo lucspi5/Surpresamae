@@ -12,7 +12,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* SEU GIF DE FUNDO AQUI */
             background-image: url('flor.gif');
             background-size: cover;
             background-position: center;
@@ -23,64 +22,82 @@
             text-align: center;
         }
 
+        /* Container da Mensagem */
         .container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             z-index: 10;
-            max-width: 90%;
+            max-width: 450px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto; /* Permite rolar se o texto for grande no celular */
+            display: none; 
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Botão solto sobre o GIF (sem borda branca ao redor) */
+        #inicio {
+            z-index: 20;
         }
 
         #btn-mensagem {
             background-color: #ff4d6d;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 18px 40px;
+            font-size: 1.3rem;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.5);
+            font-weight: bold;
         }
 
         #btn-mensagem:hover { 
             transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+            background-color: #ff3355;
         }
 
-        #conteudo-surpresa {
-            display: none;
-            margin-top: 20px;
-        }
-
-        #conteudo-surpresa h1 {
+        h1 {
             color: #d63384;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
         }
 
-        img.foto-mae {
+        .foto-mae {
             max-width: 100%;
             height: auto;
             border-radius: 15px;
-            border: 5px solid rgba(255, 154, 158, 0.5);
+            border: 4px solid #fff;
             margin-bottom: 20px;
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #444;
+        /* Estilo da sua mensagem */
+        .texto-personalizado {
+            font-size: 1.05rem;
+            color: #333;
             line-height: 1.6;
+            text-align: left;
+            white-space: pre-wrap;
+            padding: 0 10px;
         }
 
+        /* Chuva de Corações */
         .coracao {
             position: absolute;
             top: -10%;
             color: #ff4d6d;
-            font-size: 20px;
-            user-select: none;
+            font-size: 24px;
             animation: queda linear forwards;
             pointer-events: none;
+            z-index: 5;
         }
 
         @keyframes queda {
@@ -90,23 +107,21 @@
 </head>
 <body>
 
-    <div class="container">
-        <div id="inicio">
-            <button id="btn-mensagem" onclick="revelarSurpresa()">Receber Mensagem</button>
-        </div>
+    <div id="inicio">
+        <button id="btn-mensagem" onclick="revelarSurpresa()">Receber Mensagem</button>
+    </div>
 
+    <div class="container" id="container-mensagem">
         <div id="conteudo-surpresa">
-            <h1>Para a melhor mãe do mundo! ❤️</h1>
+            <h1>Feliz dia das mães ❤️</h1>
+            
             <img src="foto.jpg" alt="Foto da Mamãe" class="foto-mae">
-            <p>
-                Mãe, obrigado por ser meu porto seguro e minha maior inspiração. <br>
-                Que seu dia seja tão especial quanto o seu coração! <br>
-                <strong>Te amo muito!</strong>
-            </p>
+            
+            <div class="texto-personalizado">Feliz dia das mães, mãe...eu te amo mto e só quero agradecer vc por tudo, pelo apoio e carinho que a senhora está me dando, toda segurança e companhia, vc é a melhor mãe que eu poderia ter, me desculpa por falhas e erros, me desculpa se algum dia eu decepcionei a senhora...me dsclp tbm por as vezes não conseguir tbm demonstrar que te amo, saiba que eu tenho muito orgulho de vc, vê vc passando por cada coisa n é pra qualquer um, vc é a minha admiração e meu carinho, vc tem total meu apoio em tudo, no que vc precisar eu estarei aqui, pode ligar ou mandar mensagem sempre estarei aqui pra escutar vc mãe, sei que não temos muito vínculo mas se a gente tivesse seríamos as melhores do mundo, vc sempre dando oq n tem pra mim e tirando de onde n poderia pra agradar qm ama...isso tbm é uma admiração q eu tenho em vc mãe, eu sempre vou ser grata pelas coisas q vc já fez e está fzd por mim, com todo o meu carinho e coração eu te amo mãe 🤍🤍🤍🤍🤍</div>
         </div>
     </div>
 
-    <audio id="musica-fundo" src="música.mp3" loop></audio>
+    <audio id="musica-fundo" src="musica.mp3" loop></audio>
 
     <script>
         function criarCoracao() {
@@ -115,20 +130,22 @@
             coracao.innerHTML = '❤️';
             coracao.style.left = Math.random() * 100 + 'vw';
             coracao.style.animationDuration = Math.random() * 2 + 3 + 's';
-            coracao.style.opacity = Math.random();
             document.body.appendChild(coracao);
-
             setTimeout(() => { coracao.remove(); }, 5000);
         }
 
         function revelarSurpresa() {
             document.getElementById('inicio').style.display = 'none';
-            document.getElementById('conteudo-surpresa').style.display = 'block';
+            document.getElementById('container-mensagem').style.display = 'block';
             
             const musica = document.getElementById('musica-fundo');
-            musica.play().catch(e => console.log("Erro ao tocar áudio (comum em navegadores): ", e));
+            musica.play().catch(e => {
+                console.log("Áudio aguardando interação.");
+                // Caso o navegador bloqueie, tenta novamente
+                musica.play();
+            });
 
-            setInterval(criarCoracao, 300);
+            setInterval(criarCoracao, 250);
         }
     </script>
 </body>
