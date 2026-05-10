@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia das Mães!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* SEU GIF DE FUNDO AQUI */
+            background-image: url('LINK_DO_SEU_GIF');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantém o GIF fixo ao rolar a página se necessário */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente para o conteúdo */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra um pouco mais forte para destacar */
+            z-index: 10;
+            max-width: 90%;
+        }
+
+        /* Removi o estilo do h1, já que ele não está mais no início */
+
+        #btn-mensagem {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #btn-mensagem:hover { 
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+        }
+
+        #conteudo-surpresa {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* h1 dentro do conteúdo surpresa, se você quiser manter o título lá */
+        #conteudo-surpresa h1 {
+            color: #d63384;
+            margin-bottom: 20px;
+        }
+
+        img.foto-mae {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 5px solid rgba(255, 154, 158, 0.5); /* Borda combinando com o GIF/Fundo */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Estilo da Chuva de Corações (Mantido) */
+        .coracao {
+            position: absolute;
+            top: -10%;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            animation: queda linear forwards;
+            pointer-events: none; /* Garante que os corações não bloqueiem cliques */
+        }
+
+        @keyframes queda {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="inicio">
+            <button id="btn-mensagem" onclick="revelarSurpresa()">Receber Mensagem</button>
+        </div>
+
+        <div id="conteudo-surpresa">
+            <h1>Para a melhor mãe do mundo! ❤️</h1> <img src="LINK_DA_FOTO" alt="Foto da Mamãe" class="foto-mae">
+            <p>
+                Mãe, obrigado por ser meu porto seguro e minha maior inspiração. <br>
+                Que seu dia seja tão especial quanto o seu coração! <br>
+                <strong>Te amo muito!</strong>
+            </p>
+        </div>
+    </div>
+
+    <audio id="musica-fundo" src="LINK_DA_MUSICA" loop></audio> <script>
+        function criarCoracao() {
+            const coracao = document.createElement('div');
+            coracao.classList.add('coracao');
+            coracao.innerHTML = '❤️';
+            coracao.style.left = Math.random() * 100 + 'vw';
+            coracao.style.animationDuration = Math.random() * 2 + 3 + 's';
+            coracao.style.opacity = Math.random();
+            document.body.appendChild(coracao);
+
+            setTimeout(() => { coracao.remove(); }, 5000);
+        }
+
+        function revelarSurpresa() {
+            // Esconde o botão e mostra o conteúdo
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('conteudo-surpresa').style.display = 'block';
+            
+            // Toca a música
+            const musica = document.getElementById('musica-fundo');
+            musica.play().catch(e => console.log("Erro ao tocar áudio (comum em navegadores): ", e));
+
+            // Inicia a chuva de corações
+            setInterval(criarCoracao, 300);
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
